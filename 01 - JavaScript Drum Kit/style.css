@@ -1,0 +1,201 @@
+:root {
+    /* --- HSL Raw Values --- */
+    --clr-purple-50-raw: 260, 100%, 95%;
+    --clr-purple-300-raw: 264, 82%, 80%;
+    --clr-purple-500-raw: 263, 55%, 52%;
+
+    --clr-white-raw: 0, 0%, 100%;
+    --clr-grey-100-raw: 214, 17%, 92%;
+    --clr-grey-200-raw: 0, 0%, 81%;
+    --clr-grey-400-raw: 224, 10%, 45%;
+    --clr-grey-500-raw: 217, 19%, 35%;
+    --clr-dark-blue-raw: 219, 29%, 14%;
+    --clr-black-raw: 0, 0%, 7%;
+
+    /* Primary  */
+    --color-primary-very-light: hsl(var(--clr-purple-50-raw));
+ /*  #ece6ff */
+    --color-primary-light: hsl(var(--clr-purple-300-raw));
+    /* #c3aff5 */
+    --color-primary: hsl(var(--clr-purple-500-raw));
+    /* #733fc8 */
+
+    /* Neutrals */
+    --color-surface-raised: hsl(var(--clr-grey-100-raw));
+    /* #e8eef3 */
+
+
+    /* font family */
+    --font-main: monospace;
+
+    /* font weight */
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-bold: 600;
+
+    /* font size */
+    --fs: 1.2rem;
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+h1,
+h2,
+h3 {
+    text-wrap: balance;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+/* Remove list styles on ul, ol elements with a list role */
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+    scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+    background-color: var(--color-surface-raised);
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+    font-family: var(--font-main);
+    font-size: var(--fs);
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Remove animations for people who prefer reduced motion */
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Utility classes  */
+.flex {
+    display: flex;
+    gap: var(--gap, 3rem);
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.container {
+    padding: clamp(.1rem, 5vw, 2rem);
+    margin-inline: auto;
+    max-width: 100rem;
+}
+
+.stack>*+* {
+    margin-top: var(--gutter, 1rem);
+}
+
+/* screen reader only */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.main {
+    min-height: 100vh;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    line-height: 2.5rem;
+}
+
+/* visible only on screen reader */
+h1 {
+    margin-bottom: 2rem;
+}
+
+.drums {
+    justify-content: center;
+}
+
+.drums div {
+    border: 3px solid black;
+    padding: 1rem;
+    cursor: pointer;
+    border-radius: 0.625rem;
+    flex: 1 1 1;
+    width: 8rem;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #fff;
+}
+
+.drums div p {
+    font-size: 1rem;
+}
+
+@media (max-width: 350px) {
+    .drums div {
+        width: 5rem;
+    }
+}
+
+.flash {
+    box-shadow: 2px 2px 20px black;
+}
