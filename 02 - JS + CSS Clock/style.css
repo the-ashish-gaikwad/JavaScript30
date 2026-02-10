@@ -1,0 +1,229 @@
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Remove animations for people who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Utility classes  */
+.flex {
+  display: flex;
+  /* gap: var(--gap, 1rem); */
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+.container {
+  padding-inline: 2em;
+  margin: 0 auto;
+  max-width: 80rem;
+
+  position: relative;
+}
+
+/* screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.main {
+  min-height: 100vh;
+  width: 100%;
+  align-items: center;
+  background-color: hsl(214, 17%, 92%);
+}
+
+
+.clock {
+  border: 10px solid black;
+  border-radius: 50%;
+  height: 400px;
+  width: 400px;
+  position: relative;
+  margin: 1rem;
+  background-color: #fff;
+}
+
+/* Dial Ticks */
+.dial {
+  width: 4px;
+  height: 2rem;
+  background-color: black;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  transform-origin: bottom center;
+}
+
+.twelve {
+  top: 10px;
+}
+
+.six {
+  bottom: 10px;
+}
+
+.nine {
+  top: 45%;
+  left: 10px;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+.three {
+  top: 45%;
+  left: 88%;
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* Center Pin */
+.pin {
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+}
+
+/* Base Hand Styles */
+.hand {
+  position: absolute;
+  bottom: 50%;
+  /* Starts from the middle */
+  left: 50%;
+  transform-origin: bottom center;
+  transform: translateX(-50%) rotate(0deg);
+  border-radius: 4px;
+}
+
+.hour-hand {
+  height: 80px;
+  width: 8px;
+  background-color: black;
+  transform: translateX(-50%);
+  /* Adjust rotation as needed */
+}
+
+.minute-hand {
+  height: 130px;
+  width: 4px;
+  background-color: #333;
+  transform: translateX(-50%);
+}
+
+.second-hand {
+  height: 150px;
+  width: 2px;
+  background-color: red;
+  transform: translateX(-50%);
+}
+
+
+@media (max-width: 770px) {
+  .clock {
+    height: 300px;
+    width: 300px;
+  }
+
+  .nine {
+    top: 45%;
+    left: 10px;
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  .three {
+    top: 45%;
+    left: 84%;
+    transform: translateY(-50%) rotate(90deg);
+  }
+
+  .minute-hand {
+    height: 100px;
+  }
+
+  .second-hand {
+    height: 130px;
+  }
+}

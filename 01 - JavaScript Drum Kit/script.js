@@ -1,11 +1,22 @@
-let btns = document.querySelectorAll(".btn");
-
 function flash(btn) {
   btn.classList.add("flash")
   setTimeout(() => {
     btn.classList.remove("flash");
   }, 100)
 }
+
+window.addEventListener("keydown", (e) => {
+  let audio = document.querySelector(`audio[data-key="${e.code}"]`);
+  audio.currentTime = 0;
+  audio.play();
+
+  let btn = document.querySelector(`.btn[data-key="${e.code}"]`);
+  console.log(e.code)
+  flash(btn);
+
+})
+
+let btns = document.querySelectorAll(".btn");
 
 function playSound(btn) {
   const soundMap = {
@@ -25,80 +36,57 @@ function playSound(btn) {
   audio.play();
 }
 
-// event delegation
-btns.forEach((btn, event) => {
+btns.forEach((btn) => {
   btn.addEventListener("click", function () {
     flash(this);
     playSound(this.classList[0]);
   })
 });
 
-// Map keys to sound files
-const soundMap = {
-  'KeyA': 'sounds/clap.wav',
-  'KeyS': 'sounds/hihat.wav',
-  'KeyD': 'sounds/kick.wav',
-  'KeyF': 'sounds/openhat.wav',
-  'KeyG': 'sounds/boom.wav',
-  'KeyH': 'sounds/ride.wav',
-  'KeyJ': 'sounds/snare.wav',
-  'KeyK': 'sounds/tom.wav',
-  'KeyL': 'sounds/tink.wav',
-};
+// // Reusable flash function
+// function flash(element) {
+//     if (!element) return;
+//     element.classList.add("flash");
+//     setTimeout(() => {
+//         element.classList.remove("flash");
+//     }, 100);
+// }
 
-document.addEventListener('keydown', (event) => {
-  const soundPath = soundMap[event.code];
+// // One function for both keyboard and clicks
+// function handleDrum(e) {
+//     // ── Determine which key we're dealing with ────────
+//     let keyCode;
+    
+//     if (e.type === "keydown") {
+//         keyCode = e.code;           // "KeyA", "KeyS", ...
+//         // Optional: ignore if modifier keys are held
+//         if (e.ctrlKey || e.altKey || e.metaKey) return;
+//     } else {
+//         // click event
+//         keyCode = e.currentTarget.dataset.key;   // "KeyA", ...
+//     }
 
-  if (soundPath) {
-    const audio = new Audio(soundPath);
-    audio.currentTime = 0; 
-    audio.play();
-  }
+//     // Find elements
+//     const audio = document.querySelector(`audio[data-key="${keyCode}"]`);
+//     const button = document.querySelector(`[data-key="${keyCode}"]`);
 
-  if (event.code == "KeyA") {
-    document.querySelector(".clap").classList.add("flash");
-    setTimeout(() => {
-      document.querySelector(".clap").classList.remove("flash");
-    }, 100)
-  } else if (event.code == "KeyS") {
-    document.querySelector(".hihat").classList.add("flash");
-    setTimeout(() => {
-      document.querySelector(".hihat").classList.remove("flash");
-    }, 100)
-  } else if (event.code == "KeyD") {
-    document.querySelector(".kick").classList.add("flash");
-    setTimeout(() => {
-      document.querySelector(".kick").classList.remove("flash");
-    }, 100)
-  } else if (event.code == "KeyF") {
-    document.querySelector(".openhat").classList.add("flash");
-    setTimeout(() => {
-      document.querySelector(".openhat").classList.remove("flash");
-    }, 100)
-  } else if (event.code == "KeyG") {
-    document.querySelector(".boom").classList.add("flash");
-    setTimeout(() => {
-      document.querySelector(".boom").classList.remove("flash");
-    }, 100)
-  } else if (event.code == "KeyH") {
-    document.querySelector(".ride").classList.add("flash");
-    setTimeout(() => {
-      document.querySelector(".ride").classList.remove("flash");
-    }, 100)
-  } else if (event.code == "KeyJ") {
-    document.querySelector(".snare").classList.add("flash");
-    setTimeout(() => {
-      document.querySelector(".snare").classList.remove("flash");
-    }, 100)
-  } else if (event.code == "KeyK") {
-    document.querySelector(".tom").classList.add("flash");
-    setTimeout(() => {
-      document.querySelector(".tom").classList.remove("flash");
-    }, 100)
-  } else if (event.code == "KeyL") {
-    document.querySelector(".tink").classList.add("flash");
-    setTimeout(() => {
-      document.querySelector(".tink").classList.remove("flash");
-    }, 100)
-  }
-});
+//     if (!audio || !button) return;
+
+//     // Play sound
+//     audio.currentTime = 0;
+//     audio.play().catch(err => {
+//         // Optional: silent catch for aborted plays
+//         console.log("Play interrupted:", err);
+//     });
+
+//     // Visual feedback
+//     flash(button);
+// }
+
+// // ── Event listeners ───────────────────────────────────────
+
+// window.addEventListener("keydown", handleDrum);
+
+// document.querySelectorAll(".btn").forEach(btn => {
+//     btn.addEventListener("click", handleDrum);
+// });
